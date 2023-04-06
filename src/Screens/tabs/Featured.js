@@ -7,8 +7,45 @@ import {
   ScrollView,
 } from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const Featured = () => {
+  const navigation = useNavigation();
+  let featuredCourses = [
+    {
+      title: 'Learn Javascript in 30 Days',
+      image:
+        'https://c4.wallpaperflare.com/wallpaper/496/225/160/programming-code-html-css-wallpaper-preview.jpg',
+      tutor: 'ali khan',
+      price: '233',
+      discountprice: '233',
+      rating: '4.9',
+      totalRating: '2343',
+      isBestseller: true,
+    },
+    {
+      title: 'Learn Javascript in 30 Days',
+      image:
+        'https://c4.wallpaperflare.com/wallpaper/496/225/160/programming-code-html-css-wallpaper-preview.jpg',
+      tutor: 'ali khan',
+      price: '233',
+      discountprice: '233',
+      rating: '4.9',
+      totalRating: '2343',
+      isBestseller: false,
+    },
+    {
+      title: 'Learn Javascript in 30 Days',
+      image:
+        'https://c4.wallpaperflare.com/wallpaper/496/225/160/programming-code-html-css-wallpaper-preview.jpg',
+      tutor: 'ali khan',
+      price: '233',
+      discountprice: '233',
+      rating: '4.9',
+      totalRating: '2343',
+      isBestseller: true,
+    },
+  ];
   return (
     <View style={{flex: 1}}>
       <ScrollView style={{flex: 1}}>
@@ -60,19 +97,23 @@ const Featured = () => {
           </Text>
           <View style={{width: '100%', marginTop: 10, marginBottom: 200}}>
             <FlatList
-              data={[1, 1, 1, 1, 1, 1, 1]}
+              data={featuredCourses}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               renderItem={({item, index}) => {
                 return (
-                  <TouchableOpacity style={{width: 300, marginLeft: 10}}>
+                  <TouchableOpacity
+                    style={{width: 300, marginLeft: 10}}
+                    onPress={() => {
+                      navigation.navigate('Viewcourse', {data: item});
+                    }}>
                     <View
                       style={{
                         width: '100%',
                         height: '100%',
                       }}>
                       <Image
-                        source={require('../../images/js.jpg')}
+                        source={{uri: item.image}}
                         style={{width: '100%', height: 150}}
                       />
                       <Text
@@ -83,7 +124,7 @@ const Featured = () => {
                           marginLeft: 10,
                           marginTop: 10,
                         }}>
-                        Learn Javascript in 10 days
+                        {item.title}
                       </Text>
                       <Text
                         style={{
@@ -91,7 +132,7 @@ const Featured = () => {
                           // color: 'black',
                           marginLeft: 10,
                         }}>
-                        Ali khan
+                        {item.tutor}
                       </Text>
                       <View
                         style={{
@@ -132,7 +173,7 @@ const Featured = () => {
                             marginTop: 5,
                             marginLeft: 10,
                           }}>
-                          {'$999'}
+                          {'$' + item.price}
                         </Text>
                         <Text
                           style={{
@@ -143,21 +184,23 @@ const Featured = () => {
                             marginTop: 5,
                             marginLeft: 10,
                           }}>
-                          {'$2999'}
+                          {'$' + item.discountprice}
                         </Text>
                       </View>
-                      <View
-                        style={{
-                          backgroundColor: 'gold',
-                          height: 30,
-                          width: 100,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          marginLeft: 10,
-                          marginTop: 5,
-                        }}>
-                        <Text style={{color: 'black'}}> Best Seller</Text>
-                      </View>
+                      {item.isBestseller ? (
+                        <View
+                          style={{
+                            backgroundColor: 'gold',
+                            height: 30,
+                            width: 100,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginLeft: 10,
+                            marginTop: 5,
+                          }}>
+                          <Text style={{color: 'black'}}> Best Seller</Text>
+                        </View>
+                      ) : null}
                     </View>
                   </TouchableOpacity>
                 );
