@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Splash from './Screens/Splash';
 import Main from './Screens/Main';
 import Viewcourse from './Screens/Viewcourse';
+import Videoscreen from './Screens/Videoscreen';
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
@@ -25,6 +26,11 @@ const AppNavigator = () => {
         <Stack.Screen
           name="Viewcourse"
           component={Viewcourse}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Videoscreen"
+          component={Videoscreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
